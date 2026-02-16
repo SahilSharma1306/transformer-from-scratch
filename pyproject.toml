@@ -1,0 +1,60 @@
+[project]
+name = "transformer-from-scratch"
+version = "1.0.0"
+description = "Transformer implemented from scratch using PyTorch — RMSNorm, SwiGLU, RoPE, DDP, Mixed Precision"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Sahil Sharma", email = "sahil@example.com" },
+]
+keywords = ["transformer", "pytorch", "deep-learning", "nlp", "attention", "rope", "from-scratch"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0",
+    "datasets>=2.14",
+    "tokenizers>=0.13",
+    "tensorboard>=2.14",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1",
+]
+eval = [
+    "sacrebleu>=2.3",
+]
+
+[project.urls]
+Repository = "https://github.com/SahilSharma1306/transformer-from-scratch"
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[tool.setuptools.packages.find]
+include = ["transformer*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

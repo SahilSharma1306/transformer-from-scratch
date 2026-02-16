@@ -1,0 +1,33 @@
+# Transformer from Scratch — Default Configuration
+# Override any value via CLI: --batch_size 64 --num_epochs 50
+
+# ── Model Architecture ───────────────────────────────────────────
+d_model: 512
+num_heads: 8
+num_layers: 6
+dropout: 0.3
+seq_len: 320
+rope_theta: 10000.0
+
+# ── Training ─────────────────────────────────────────────────────
+batch_size: 32
+num_epochs: 25
+lr: 6e-4
+warmup_pct: 0.05
+min_lr_ratio: 0.1
+weight_decay: 0.1
+max_grad_norm: 1.0
+label_smoothing: 0.1
+num_workers: 8
+
+# ── Data ─────────────────────────────────────────────────────────
+lang_src: "en"
+lang_tgt: "it"
+vocab_size: 20000
+
+# ── Paths ────────────────────────────────────────────────────────
+model_folder: "weights"
+model_basename: "tmodel_"
+preload: null
+tokenizer_file: "tokenizer_{0}.json"
+experiment_name: "runs/tmodel"
