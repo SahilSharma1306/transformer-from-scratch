@@ -60,7 +60,7 @@ The target embedding matrix and the final projection layer perform inverse opera
 
 ## 📊 Training Results
 
-Trained for **12 epochs** on 2× NVIDIA T4 GPUs (Kaggle) — ~3 hours total.
+Trained for **12 epochs** on 2× NVIDIA T4 GPUs (Kaggle) — ~90 minutes per epoch.
 
 <div align="center">
 
@@ -179,6 +179,15 @@ This prevents dead neurons and gradient vanishing at init — critical for deep 
 3. **Label smoothing is underrated.** Setting it to 0.1 prevents the model from becoming overconfident on training data and significantly improves validation loss convergence.
 
 4. **Pre-tokenizing to disk changes everything.** Moving tokenization out of the DataLoader hot path turned a CPU-bound pipeline into a GPU-bound one.
+---
+
+## 🔮 Limitations & Future Work
+
+- **Data scale vs model capacity.** At 148M parameters, this model has significantly more capacity than 1.1M sentence pairs can fully exploit. Scaling to WMT-scale data (40M+ pairs) would unlock substantially better translation quality — the architecture is ready, the data is the bottleneck.
+- **Greedy decoding only.** The current inference uses argmax at each step. Adding beam search (beam width 4–5) with length normalization would improve translation fluency at the cost of ~4× decode time.
+- **No BLEU evaluation.** Validation loss is tracked, but a proper BLEU/chrF++ benchmark against WMT baselines would give a clearer picture of translation quality.
+
+
 
 ---
 
