@@ -9,6 +9,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
 [![PyTorch 2.1+](https://img.shields.io/badge/pytorch-2.1+-ee4c2c.svg)](https://pytorch.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/SahilSharma1306/transformer-from-scratch/actions/workflows/lint.yml/badge.svg)](https://github.com/SahilSharma1306/transformer-from-scratch/actions)
 
 </div>
 
@@ -103,9 +104,11 @@ transformer-from-scratch/
 ├── dataset.py         # BPE tokenizer training, NumPy caching, BilingualDataset
 ├── train.py           # DDP training loop with AMP, cosine LR, early stopping
 ├── validation.py      # Greedy decoding + teacher-forced validation loss
+├── inference.py       # Standalone EN→FR translation CLI
 ├── config.py          # All hyperparameters in one place
 ├── requirements.txt   # pip dependencies
 ├── LICENSE            # MIT
+├── .github/workflows/ # CI: linting + import checks
 └── assets/
     └── training_curves.png
 ```
@@ -141,6 +144,19 @@ The first run will automatically:
 ### 4. Resume from checkpoint
 
 Edit `config.py` and set `"preload": "05"` (or any epoch number) to resume training.
+
+### 5. Translate (inference)
+
+```bash
+python inference.py --text "The weather is beautiful today."
+```
+
+```
+  EN: The weather is beautiful today.
+  FR: Le temps est beau aujourd'hui.
+```
+
+Run `python inference.py --help` for all options (custom checkpoint path, device selection).
 
 ---
 
